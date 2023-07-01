@@ -1,0 +1,52 @@
+CREATE DATABASE SuperMoney;
+USE SuperMoney;
+CREATE TABLE logs ("id" INT PRIMARY KEY IDENTITY(1,1), "user" VARCHAR(50), "message" VARCHAR(50));
+INSERT INTO logs ("user","message") VALUES ('hack3r', 'Connects');
+INSERT INTO logs ("user","message") VALUES ('hack3r', 'Connects');
+INSERT INTO logs ("user","message") VALUES ('hack3r' , 'Erases file'); 
+INSERT INTO logs ("user","message") VALUES ('hack3r', 'Connects');
+INSERT INTO logs ("user","message") VALUES ('hack3r', 'Create new file');
+INSERT INTO logs ("user","message") VALUES ('hack3r','Leaves');
+INSERT INTO logs ("user","message") VALUES ('hack3r','Connects');
+INSERT INTO logs ("user","message") VALUES ('hack3r','Erases file');
+INSERT INTO logs ("user","message") VALUES ('hack3r','Create new file');
+INSERT INTO logs ("user","message") VALUES ('hack3r','Create new file');
+INSERT INTO logs ("user","message") VALUES ('hack3r','Leaves');
+INSERT INTO logs ("user","message") VALUES ('hack3r','Create new file');
+INSERT INTO logs ("user","message") VALUES ('hack3r','Create new file');
+INSERT INTO logs ("user","message") VALUES ('hack3r','Erases file');
+INSERT INTO logs ("user","message") VALUES ('hack3r','Create new file');
+INSERT INTO logs ("user","message") VALUES ('admin','Leaves');
+INSERT INTO logs ("user","message") VALUES ('admin','Create new file');
+INSERT INTO logs ("user","message") VALUES ('admin','Create new file');
+INSERT INTO logs ("user","message") VALUES ('admin','Create new file');
+INSERT INTO logs ("user","message") VALUES ('admin','Connects');
+INSERT INTO logs ("user","message") VALUES ('admin','Connects');
+INSERT INTO logs ("user","message") VALUES ('admin','Leaves');
+INSERT INTO logs ("user","message") VALUES ('admin','Leaves');
+INSERT INTO logs ("user","message") VALUES ('admin','Erases file');
+INSERT INTO logs ("user","message") VALUES ('admin','Connects');
+INSERT INTO logs ("user","message") VALUES ('admin','Connects');
+INSERT INTO logs ("user","message") VALUES ('admin','Erases file');
+INSERT INTO logs ("user","message") VALUES ('admin','Connects');
+INSERT INTO logs ("user","message") VALUES ('admin','Leaves');
+INSERT INTO logs ("user","message") VALUES ('admin','Create new file');
+
+BACKUP DATABASE VotreBaseDeDonnees TO DISK = 'C:\chemin\vers\sauvegarde.bak';
+
+
+BEGIN TRANSACTION;
+
+
+DELETE FROM Logs
+WHERE UserID = 'h4ck3r';
+
+
+WITH LogsToDelete AS (
+    SELECT TOP 3 *
+    FROM Logs
+    ORDER BY LogID
+)
+DELETE FROM LogsToDelete;
+
+COMMIT;
